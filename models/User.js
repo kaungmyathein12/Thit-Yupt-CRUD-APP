@@ -16,16 +16,19 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
+const generateToken = () => {};
+
 const validateUser = (req) => {
   const schema = Joi.object({
     email: Joi.string()
       .required()
-      .unique()
       .email({ tlds: { allows: ["com", "net", "dev"] } }),
     password: Joi.string().min(4).max(255).required(),
   });
   return schema.validate(req.body);
 };
 
-module.exports = User;
-module.exports = validateUser;
+module.exports = {
+  User,
+  validateUser,
+};
