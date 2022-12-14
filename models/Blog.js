@@ -14,7 +14,10 @@ const blogSchema = new mongoose.Schema({
     required: [true, "Blog must have a body"],
   },
   image: String,
-  reaction_count: Number,
+  reaction_count: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const Blog = mongoose.model("Blog", blogSchema);
@@ -22,10 +25,10 @@ const Blog = mongoose.model("Blog", blogSchema);
 const validateBlog = (req) => {
   const schema = Joi.object({
     userId: Joi.string().required(),
-    title: Joi.string().min(10).max(255).required(),
+    title: Joi.string().min(2).max(255).required(),
     body: Joi.string().required(),
   });
-  return schema.validate(blogSchema);
+  return schema.validate(req);
 };
 module.exports = {
   Blog,
