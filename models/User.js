@@ -23,9 +23,7 @@ const generateToken = (email) => {
 
 const validateUser = (req) => {
   const schema = Joi.object({
-    email: Joi.string()
-      .required()
-      .email({ tlds: { allows: ["com", "net", "dev"] } }),
+    email: Joi.string().min(4).max(55).required(),
     password: Joi.string().min(4).max(255).required(),
   });
   return schema.validate(req.body);
