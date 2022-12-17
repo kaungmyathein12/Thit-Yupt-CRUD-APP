@@ -23,7 +23,9 @@ exports.loginUser = async (req, res) => {
           const token = generateToken(req.body.email);
           res.status(200).json({
             status: "success",
-            token,
+            body: {
+              token,
+            },
           });
         } else {
           res.status(400).json({
@@ -64,7 +66,7 @@ exports.registerUser = async (req, res) => {
         const token = generateToken(user.email);
         res.status(200).json({
           status: "success",
-          data: {
+          body: {
             token,
           },
         });

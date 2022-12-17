@@ -13,6 +13,7 @@ exports.getAllBlog = async (req, res) => {
     });
   }
 };
+
 exports.createBlog = async (req, res) => {
   const reqData = {
     userId: req.body.userId,
