@@ -14,11 +14,34 @@ exports.getAllBlog = async (req, res) => {
   }
 };
 
+exports.getBlogById = async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id);
+    if (!blog) {
+      return res
+        .status(404)
+        .json({ status: "fail", message: "Blog not found" });
+    } else {
+      res.status(200).json({
+        status: "success",
+        data: blog,
+      });
+    }
+  } catch (error) {
+    res.status(400).json({
+      status: "fail",
+      message: error,
+    });
+  }
+};
+
 exports.createBlog = async (req, res) => {
   const reqData = {
-    userId: req.body.userId,
     title: req.body.title,
     body: req.body.body,
+    image: req.body.image,
+    special: req.body.special,
+    type: req.body.type,
   };
   const { error } = validateBlog(reqData);
   if (error) {

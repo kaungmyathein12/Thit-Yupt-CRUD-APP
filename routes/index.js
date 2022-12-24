@@ -8,6 +8,6 @@ const auth = require("./../middleware/auth");
 const MainRouter = express.Router();
 
 MainRouter.use("/auth", userRouter);
-MainRouter.use("/blog", auth, blogRouter);
+MainRouter.use("/blog", blogRouter);
 
 module.exports = MainRouter;
