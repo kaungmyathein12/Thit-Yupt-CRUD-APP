@@ -35,6 +35,23 @@ exports.getBlogById = async (req, res) => {
   }
 };
 
+exports.updateBlog = async (req, res) => {
+  try {
+    const { id } = req.params.id;
+    const blog = await Blog.findByIdAndUpdate(id, req.body);
+    if (!blog) {
+      throw new error("Blog with the id not found");
+    } else {
+      res.status(202).json({
+        status: "success",
+        body: blog,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 exports.createBlog = async (req, res) => {
   const reqData = {
     title: req.body.title,

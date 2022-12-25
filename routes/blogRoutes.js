@@ -6,7 +6,8 @@ const router = express.Router();
 router
   .route("/")
   .get(blogController.getAllBlog)
-  .post(auth, blogController.createBlog);
+  .post(auth, blogController.createBlog)
+  .put(auth, blogController.updateBlog);
 
 router.route("/:id").get(blogController.getBlogById);
 
