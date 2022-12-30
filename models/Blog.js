@@ -6,6 +6,11 @@ const blogSchema = new mongoose.Schema({
     required: [true, "Blog must have a title"],
     unique: true,
   },
+  description: {
+    type: String,
+    required: [true, "Blog must have a description"],
+    unique: true,
+  },
   body: {
     type: String,
     required: [true, "Blog must have a body"],

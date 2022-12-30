@@ -52,6 +52,29 @@ exports.updateBlog = async (req, res) => {
   }
 };
 
+exports.deleteBlog = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const blog = await Blog.findByIdAndDelete(id);
+    if (blog) {
+      res.status(200).json({
+        status: "success",
+        body: blog,
+      });
+    } else {
+      res.status(404).json({
+        status: "fail",
+        message: "Blog not found",
+      });
+    }
+  } catch (error) {
+    res.status(404).json({
+      status: "fail",
+      message: error,
+    });
+  }
+};
+
 exports.createBlog = async (req, res) => {
   const reqData = {
     title: req.body.title,
