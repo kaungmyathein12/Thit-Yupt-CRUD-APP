@@ -8,7 +8,6 @@ const blogSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: [true, "Blog must have a description"],
     unique: true,
   },
   body: {
@@ -29,7 +28,7 @@ const blogSchema = new mongoose.Schema({
   },
   created_At: {
     type: Date,
-    default: Date.now,
+    default: Date.now(),
   },
 });
 
